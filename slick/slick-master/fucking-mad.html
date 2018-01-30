@@ -1,0 +1,207 @@
+<head><meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="./slick/slick.css">
+<link rel="stylesheet" type="text/css" href="./slick/slick-theme.css">
+<style type="text/css">
+body {
+    background-image: url("https://daks2k3a4ib2z.cloudfront.net/58cec2c0909757c65094d18e/5909d8e118423f673f8cdcfb_footer%20desktop.png");
+}
+
+.title {
+    font-family: 'polygon party';
+    text-shadow: -1px 0 #ff3939, 0 1px #00ce00, 1px 0 #ffce29, 0 -1px #00deff;
+    text-align: center;
+    font-size: 150px;
+    color: #fff;
+}
+
+
+.slider-container {
+    margin: 0 auto;
+    width: 50%;
+}
+
+.slick-next:before,
+.slick-prev:before {
+    color: white;
+    font-size: 50px;
+    opacity: 1;
+}
+
+.slick-prev {
+    transform: translateX(-80px);
+}
+
+.slick-next {
+    transform: translateX(60px);
+}
+
+.slick-slide {
+    height: 224px;
+}
+
+.slide-container img {
+    margin: 0;
+    outline: none;
+}
+
+.wrapper {
+    margin-top: 25px;
+    font-size: 21px;
+    text-align: center;
+
+    -webkit-animation: fadein cubic-bezier(.89, .17, .15, 1.11) 4.5s;
+    /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein cubic-bezier(.89, .17, .15, 1.11) 4.5s;
+    /* Firefox < 16 */
+    -ms-animation: fadein cubic-bezier(.89, .17, .15, 1.11) 4.5s;
+    /* Internet Explorer */
+    -o-animation: fadein cubic-bezier(.89, .17, .15, 1.11) 4.5s;
+    /* Opera < 12.1 */
+    animation: fadein cubic-bezier(.89, .17, .15, 1.11) 4.5s;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* Firefox < 16 */
+
+@-moz-keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* Safari, Chrome and Opera > 12.1 */
+
+@-webkit-keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* Internet Explorer */
+
+@-ms-keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+
+/* Opera < 12.1 */
+
+@-o-keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+</style>
+</head>
+
+<body>
+    <div class='wrapper'>
+        <h1 class="title">SUPER SLIDER BROS</h1>
+        <div class="slider-container">
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+    <script src="./slick/slick.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+    $(document).on('ready', function() {
+        $('.title').append(interpolator(20, 1))
+        $(".slider-container").slick({
+            dots: false,
+            infinite: true,
+            autoplay: true,
+            autoplaySpeed: 1,
+            speed: 2000,
+            arrows: true,
+            //  initialSlide: 20,
+            //  autoplaySpeed default is 3000...lower ===faster
+            centerMode: true,
+            //  slidesPerRow: 2,
+            //  slidesToShow:10,
+            variableWidth: true,
+            //  centerPadding: 100px;
+            cssEase: 'linear',
+        });
+    });
+
+    // fn to rotate the colors of each letter
+    function colorizeText(elem) {
+        var txt = elem.innerText;
+        var new_elem = document.createElement('div');
+        var colors = ['#ff3939', ' #00ce00', '#ffce29', '#00deff'];
+        var color_idx = 0;
+        for (var i = 0; i < txt.length; i++) {
+            // make a new <span> for each letter
+            var new_span = document.createElement('span');
+            new_span.innerHTML = txt[i];
+
+            // set the color of the span
+            var this_color = colors[color_idx];
+            new_span.setAttribute('style', 'color: ' + this_color);
+
+            // cycle to next color
+            color_idx++;
+            // (wrap back around if we get to the end of the colors)
+            color_idx = color_idx % colors.length;
+
+            console.log(new_span);
+            new_elem.appendChild(new_span);
+        }
+        elem.innerHTML = new_elem.innerHTML; // swap in the contents
+    }
+    colorizeText(document.getElementsByClassName('title')[0]);
+
+    //interpolator
+    function interpolator(maxImg, level) {
+        var level = 1;
+        for (var i = 0; i <= maxImg; i++) {
+            $('.slider-container').append(`<div><img src="../../imgs/mario-1-` + level + ` [www.imagesplitter.net]-0-` + i + `.jpeg"></div>`);
+            if (i === 19) {
+                $('.slider-container').append(`<div class = "image-scale translatinator">
+           <img src="../../imgs/bannerA.jpeg">>
+           </div>
+           <div class = "image-scale translatinator">
+           <img src="../../imgs/bannerB.jpeg">>
+           </div>
+           <div class = "image-scale translatinator">
+           <img src="../../imgs/bannerC.jpeg">>
+           </div>
+           <div class = "image-scale translatinator">
+           <img src="../../imgs/bannerD.jpeg">
+           </div>
+           <div class = "image-scale translatinator">
+           <img src="../../imgs/bannerE.jpeg">
+           </div>`);
+                i = 0;
+                level++;
+            }
+            if (level > 4) { break; }
+        }
+    }
+    </script>
+</body>
